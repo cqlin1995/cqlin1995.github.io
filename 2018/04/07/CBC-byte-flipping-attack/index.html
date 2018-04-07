@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://cqlin1995.github.io/2018/04/07/CBC-byte-flipping-attack/cbc-1.JPG">
 <meta property="og:image" content="http://cqlin1995.github.io/2018/04/07/CBC-byte-flipping-attack/cbc-2.JPG">
 <meta property="og:image" content="http://cqlin1995.github.io/2018/04/07/CBC-byte-flipping-attack/cbc-3.JPG">
-<meta property="og:updated_time" content="2018-04-07T14:43:13.663Z">
+<meta property="og:updated_time" content="2018-04-07T15:12:07.817Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CBC-byte-flipping-attack">
 <meta name="twitter:description" content="在做ctf题目的过程中，遇到了cbc字节翻转攻击的利用技巧，在深入学习之后，觉得应该记录下来，以免遗忘。 AES CBC模式的加密与解密原理分组密码链接模式的特点在于：加密时，每一个明文分组(除了第一个明文分组)加密之前都需要和前一个密文分组进行异或处理之后，才可以进行加密处理；解密时，每一个密文分组经过解密处理之后，都需要和前一个密文分组进行异或处理，才可以得到对应的明文分组。 分组密码链接模式">
@@ -307,7 +307,7 @@
     <link itemprop="mainEntityOfPage" href="http://cqlin1995.github.io/2018/04/07/CBC-byte-flipping-attack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="cqlin1995">
+      <meta itemprop="name" content="Pur3uit">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -392,8 +392,7 @@
 <h3 id="AES-CBC模式的加密与解密原理"><a href="#AES-CBC模式的加密与解密原理" class="headerlink" title="AES CBC模式的加密与解密原理"></a>AES CBC模式的加密与解密原理</h3><p>分组密码链接模式的特点在于：加密时，每一个明文分组(除了第一个明文分组)加密之前都需要和前一个密文分组进行异或处理之后，才可以进行加密处理；解密时，每一个密文分组经过解密处理之后，都需要和前一个密文分组进行异或处理，才可以得到对应的明文分组。</p>
 <p>分组密码链接模式，顾名思义，加密和解密过程都是以分组进行的。每一个分组大小为128bits(16字节)，如果明文的长度不是16字节的整数倍，需要对最后一个分组进行填充(padding)，使得最后一个分组长度为16字节。</p>
 <p>对于加密时的第一个明文分组，需要通过和IV(初始化向量)进行异或处理之后，才可以进行加密处理；解密时的第一个密文分组，解密之后，需要通过和IV进行异或处理，才可以得到第一个明文分组。</p>
-<p>这里的IV为不可预测的，随机生成的16字节向量，它不需要保密，但是需要保证完整性。</p>
-<p><strong>CBC模式的加解密过程</strong><br><img src="/2018/04/07/CBC-byte-flipping-attack/encryption.png"><br><img src="/2018/04/07/CBC-byte-flipping-attack/decryption.png"></p>
+<p>这里的IV为不可预测的，随机生成的16字节向量，它不需要保密，但是需要保证完整性。<br><a id="more"></a><br><strong>CBC模式的加解密过程</strong><br><img src="/2018/04/07/CBC-byte-flipping-attack/encryption.png"><br><img src="/2018/04/07/CBC-byte-flipping-attack/decryption.png"></p>
 <blockquote>
 <ul>
 <li>加密过程</li>
@@ -458,9 +457,7 @@
 <blockquote>
 <p>2.将返回的IV和cipher放在cookie域当中，并去掉id值。提交。</p>
 </blockquote>
-<div class="image-size-612"><br><img src="/2018/04/07/CBC-byte-flipping-attack/cbc-1.JPG"><br></div>
-
-<p><br></p>
+<img src="/2018/04/07/CBC-byte-flipping-attack/cbc-1.JPG">
 <img src="/2018/04/07/CBC-byte-flipping-attack/cbc-2.JPG">
 <p>然而username里面放的值不是我们想要的。现在我们需要用到cbc字节翻转，来构造sql注入语句。</p>
 <p>由于sqliCheck函数将<code>‘=’，‘，’，‘union&#39;</code>全部过滤了，所以需要用1nion代替union，用join代替逗号，用regexp代替等号，然后使用cbc字节翻转将1换为u，得到union。</p>
@@ -564,7 +561,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">cqlin1995</p>
+              <p class="site-author-name" itemprop="name">Pur3uit</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -665,7 +662,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">cqlin1995</span>
+  <span class="author" itemprop="copyrightHolder">Pur3uit</span>
 
   
 
