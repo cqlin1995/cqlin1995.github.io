@@ -112,7 +112,7 @@
 <meta property="og:image" content="http://cqlin1995.github.io/images/posts/web-security/cbc-1.PNG">
 <meta property="og:image" content="http://cqlin1995.github.io/images/posts/web-security/cbc-2.png">
 <meta property="og:image" content="http://cqlin1995.github.io/images/posts/web-security/cbc-3.png">
-<meta property="og:updated_time" content="2018-04-07T09:45:12.119Z">
+<meta property="og:updated_time" content="2018-04-07T10:19:23.100Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CBC-byte-flipping-attack">
 <meta name="twitter:description" content="在做ctf题目的过程中，遇到了cbc字节翻转攻击的利用技巧，在深入学习之后，觉得应该记录下来，以免遗忘。 AES CBC模式的加密与解密原理分组密码链接模式的特点在于：加密时，每一个明文分组(除了第一个明文分组)加密之前都需要和前一个密文分组进行异或处理之后，才可以进行加密处理；解密时，每一个密文分组经过解密处理之后，都需要和前一个密文分组进行异或处理，才可以得到对应的明文分组。 分组密码链接模式">
@@ -393,7 +393,7 @@
 <p>分组密码链接模式，顾名思义，加密和解密过程都是以分组进行的。每一个分组大小为128bits(16字节)，如果明文的长度不是16字节的整数倍，需要对最后<br>一个分组进行填充(padding)，使得最后一个分组长度为16字节。</p>
 <p>对于加密时的第一个明文分组，需要通过和IV(初始化向量)进行异或处理之后，才可以进行加密处理；解密时的第一个密文分组，解密之后，需要通过和IV进<br>行异或处理，才可以得到第一个明文分组。</p>
 <p>这里的IV为不可预测的，随机生成的16字节向量，它不需要保密，但是需要保证完整性。</p>
-<p>　　<strong>CBC模式的加解密过程</strong><br><img src="/2018/04/07/CBC-byte-flipping-attack/encryption.png"><br><img src="/2018/04/07/CBC-byte-flipping-attack/decryption.png"></p>
+<p><strong>CBC模式的加解密过程</strong><br><img src="/2018/04/07/CBC-byte-flipping-attack/encryption.png"><br><img src="/2018/04/07/CBC-byte-flipping-attack/decryption.png"></p>
 <blockquote>
 <ul>
 <li>加密过程</li>
