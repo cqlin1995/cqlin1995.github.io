@@ -398,8 +398,8 @@
 </ul>
 </blockquote>
 <p>假设明文分组的下标从1开始</p>
-<p>$C_0 = IV$</p>
-<p>$C_i = E_k(P_i \oplus C_{i-1})$</p>
+<p>$ C_0 = IV $</p>
+<p>$ C_i = E_k(P_i \oplus C_{i-1}) $</p>
 <p><br></p>
 <blockquote>
 <ul>
@@ -460,9 +460,7 @@
 </blockquote>
 <p>通过sql注入测试，知道了数据库中有两个表：user和you_want。显然，you_want表当中包含我们需要的东西，进一步注入得到you_want表中只有一个字段value。</p>
 <p>所以我们构造如下的payload：</p>
-<blockquote>
-<p>‘id’:’0 2nion select <em> from((select 1)a join (select </em> from you_want)b join (select 3)c);’+chr(0)</p>
-</blockquote>
+<p><code>&#39;id&#39;:&#39;0 2nion select * from((select 1)a join (select * from you_want)b join (select 3)c);&#39;+chr(0)</code></p>
 <p>结果如下：<br><img src="/images/posts/web-security/cbc-3.png" alt="">{:height=”50px” weight=”100px”}</p>
 <p><br></p>
 <h4 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h4><p><a href="http://zjw.dropsec.xyz/CTF/2017/04/24/CBC%E5%AD%97%E8%8A%82%E7%BF%BB%E8%BD%AC%E6%94%BB%E5%87%BB.html" target="_blank" rel="noopener">CBC字节翻转攻击</a></p>
@@ -793,9 +791,34 @@
   
     
       
+        
+      
     
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
