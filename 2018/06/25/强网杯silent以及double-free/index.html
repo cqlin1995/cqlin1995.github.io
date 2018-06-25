@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="这个题目是2018强网杯线上赛的题目，题目在这里可以下载。可以使用两种方法来解决，一个是small bin的double free，一个是fast bin的double free。">
+  <meta name="description" content="这个题目是2018强网杯线上赛的题目，题目在这里可以下载。可以使用两种方法来解决，一个是small bin的double free，一个是fast bin的double free。顺便总结一下这两个double free。 unlink操作在前一篇文章里基本介绍了glibc的堆内存管理，但是没有深入分析chunk的释放过程，这里涉及到一个unlink宏，下面将详细说下当free一个chunk的时候">
 <meta name="keywords" content="pwn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="强网杯silent以及double free">
 <meta property="og:url" content="http://cqlin1995.github.io/2018/06/25/强网杯silent以及double-free/index.html">
 <meta property="og:site_name" content="Pur3uit">
-<meta property="og:description" content="这个题目是2018强网杯线上赛的题目，题目在这里可以下载。可以使用两种方法来解决，一个是small bin的double free，一个是fast bin的double free。">
+<meta property="og:description" content="这个题目是2018强网杯线上赛的题目，题目在这里可以下载。可以使用两种方法来解决，一个是small bin的double free，一个是fast bin的double free。顺便总结一下这两个double free。 unlink操作在前一篇文章里基本介绍了glibc的堆内存管理，但是没有深入分析chunk的释放过程，这里涉及到一个unlink宏，下面将详细说下当free一个chunk的时候">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-25T09:26:01.844Z">
+<meta property="og:updated_time" content="2018-06-25T14:18:40.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="强网杯silent以及double free">
-<meta name="twitter:description" content="这个题目是2018强网杯线上赛的题目，题目在这里可以下载。可以使用两种方法来解决，一个是small bin的double free，一个是fast bin的double free。">
+<meta name="twitter:description" content="这个题目是2018强网杯线上赛的题目，题目在这里可以下载。可以使用两种方法来解决，一个是small bin的double free，一个是fast bin的double free。顺便总结一下这两个double free。 unlink操作在前一篇文章里基本介绍了glibc的堆内存管理，但是没有深入分析chunk的释放过程，这里涉及到一个unlink宏，下面将详细说下当free一个chunk的时候">
 
 
 
@@ -382,8 +382,14 @@
       
 
       
-        <p>这个题目是2018强网杯线上赛的题目，题目在这里可以<a href="https://github.com/cqlin1995/cqlin1995.github.io/tree/master/2018/06/25/%E5%BC%BA%E7%BD%91%E6%9D%AFsilent%E4%BB%A5%E5%8F%8Adouble-free/silent" target="_blank" rel="noopener">下载</a>。可以使用两种方法来解决，一个是small bin的double free，一个是fast bin的double free。</p>
-
+        <p>这个题目是2018强网杯线上赛的题目，题目在这里可以<a href="https://github.com/cqlin1995/cqlin1995.github.io/tree/master/2018/06/25/%E5%BC%BA%E7%BD%91%E6%9D%AFsilent%E4%BB%A5%E5%8F%8Adouble-free/silent" target="_blank" rel="noopener">下载</a>。可以使用两种方法来解决，一个是small bin的double free，一个是fast bin的double free。顺便总结一下这两个double free。</p>
+<h3 id="unlink操作"><a href="#unlink操作" class="headerlink" title="unlink操作"></a>unlink操作</h3><p>在前一篇文章里基本介绍了glibc的堆内存管理，但是没有深入分析chunk的释放过程，这里涉及到一个unlink宏，下面将详细说下当free一个chunk的时候，glibc具体进行了那些操作。</p>
+<blockquote>
+<p>1：检查前一个chunk是否是free状态，这里根据被free chunk的size字段的P位进行判断，如果是free状态，则使用unlink宏将前一个free chunk从其对应的bin中取出来，和当前被free的chunk进行合并操作。<br>2：检查后一个chunk是否是free状态，这里根据后一个chunk的后一个chunk的size字段的P位进行判断，对于如何定位到next-next chunk，可以在当前chunk的地址上加上chunk的size进行定位。如果后一个chunk为free，则使用unlink操作，将其从对应bin中取出来，并与前面合并后的chunk进行合并操作。</p>
+</blockquote>
+<p><code>这里的前一个chunk和后一个chunk指的是和被free chunk在物理内存相邻的chunk</code><br><code>这里的‘将free chunk从其对应的bin中取出来’指的是删除bin中的这个free chunk记录</code><br>下面我们具体看下unlink操作：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> unlink(AV, P, BK, FD) &#123;                                            \</span></span><br><span class="line">    FD = P-&gt;fd;								      \</span><br><span class="line">    BK = P-&gt;bk;								      \</span><br><span class="line">    <span class="keyword">if</span> (__builtin_expect (FD-&gt;bk != P || BK-&gt;fd != P, <span class="number">0</span>))		      \</span><br><span class="line">      malloc_printerr (check_action, <span class="string">"corrupted double-linked list"</span>, P, AV);  \</span><br><span class="line">    <span class="keyword">else</span> &#123;								      \</span><br><span class="line">        FD-&gt;bk = BK;							      \</span><br><span class="line">        BK-&gt;fd = FD;							      \</span><br><span class="line">        <span class="keyword">if</span> (!in_smallbin_range (chunksize_nomask (P))			      \</span><br><span class="line">            &amp;&amp; __builtin_expect (P-&gt;fd_nextsize != <span class="literal">NULL</span>, <span class="number">0</span>)) &#123;		      \</span><br><span class="line">	    <span class="keyword">if</span> (__builtin_expect (P-&gt;fd_nextsize-&gt;bk_nextsize != P, <span class="number">0</span>)	      \</span><br><span class="line">		|| __builtin_expect (P-&gt;bk_nextsize-&gt;fd_nextsize != P, <span class="number">0</span>))    \</span><br><span class="line">	      malloc_printerr (check_action,				      \</span><br><span class="line">			       <span class="string">"corrupted double-linked list (not small)"</span>,    \</span><br><span class="line">			       P, AV);					      \</span><br><span class="line">            <span class="keyword">if</span> (FD-&gt;fd_nextsize == <span class="literal">NULL</span>) &#123;				      \</span><br><span class="line">                <span class="keyword">if</span> (P-&gt;fd_nextsize == P)				      \</span><br><span class="line">                  FD-&gt;fd_nextsize = FD-&gt;bk_nextsize = FD;		      \</span><br><span class="line">                <span class="keyword">else</span> &#123;							      \</span><br><span class="line">                    FD-&gt;fd_nextsize = P-&gt;fd_nextsize;			      \</span><br><span class="line">                    FD-&gt;bk_nextsize = P-&gt;bk_nextsize;			      \</span><br><span class="line">                    P-&gt;fd_nextsize-&gt;bk_nextsize = FD;			      \</span><br><span class="line">                    P-&gt;bk_nextsize-&gt;fd_nextsize = FD;			      \</span><br><span class="line">                  &#125;							      \</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;							      \</span><br><span class="line">                P-&gt;fd_nextsize-&gt;bk_nextsize = P-&gt;bk_nextsize;		      \</span><br><span class="line">                P-&gt;bk_nextsize-&gt;fd_nextsize = P-&gt;fd_nextsize;		      \</span><br><span class="line">              &#125;								      \</span><br><span class="line">          &#125;								      \</span><br><span class="line">      &#125;									      \</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>主要关注前8行代码，P就是要被从bin中删除的free chunk记录，这里主要完成的功能就是将P的前一个free chunk的fd字段修改为P的fd字段，将P的后一个free chunk的bk字段修改为P的bk字段。<br><code>这里的前一个和后一个chunk是bin循环双链表中的前一个记录和后一个记录，物理上并不相邻</code><br>如果我们可以控制P的fd和bk字段，便可以实现任意地址读写。</p>
+<h3 id="small-bin的double-free"><a href="#small-bin的double-free" class="headerlink" title="small bin的double free"></a>small bin的double free</h3>
       
     </div>
 
@@ -473,8 +479,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -549,6 +564,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#unlink操作"><span class="nav-number">1.</span> <span class="nav-text">unlink操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#small-bin的double-free"><span class="nav-number">2.</span> <span class="nav-text">small bin的double free</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
