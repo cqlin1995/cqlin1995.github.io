@@ -114,7 +114,7 @@
 <meta property="og:image" content="http://cqlin1995.github.io/2018/06/23/Glibc-堆管理学习笔记/fastbin2.png">
 <meta property="og:image" content="http://cqlin1995.github.io/2018/06/23/Glibc-堆管理学习笔记/fastbin4.png">
 <meta property="og:image" content="http://cqlin1995.github.io/2018/06/23/Glibc-堆管理学习笔记/smallbin1.png">
-<meta property="og:updated_time" content="2018-06-23T09:25:49.281Z">
+<meta property="og:updated_time" content="2018-06-25T08:26:39.704Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Glibc-堆管理学习笔记">
 <meta name="twitter:description" content="关于glibc堆内存管理，已经有很多文章进行了深入的剖析，这里我记录一下自己学习过程中的一些总结。 Arena结构glibc是基于ptmalloc2的堆内存管理器，通过arena结构来支持多线程堆内存管理。每一个线程的堆内存状态都由arena结构来纪录，这是一个malloc_state类型的结构体。">
@@ -233,7 +233,7 @@
         
           
   
-  <li class="menu-item menu-item-tags menu-item-active">
+  <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
@@ -243,7 +243,7 @@
         
           
   
-  <li class="menu-item menu-item-categories">
+  <li class="menu-item menu-item-categories menu-item-active">
     <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
@@ -444,7 +444,7 @@
 <p><code>offsetof</code>宏就是取得fd在malloc_chunk结构体当中的偏移。<br>当对malloc_state进行初始化的时候，也使用了伪chunk进行初始化：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">malloc_init_state (mstate av)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="keyword">int</span> i;</span><br><span class="line">  mbinptr bin;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/* Establish circular links for normal bins */</span></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; NBINS; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">      bin = bin_at (av, i);<span class="comment">//定位伪chunk</span></span><br><span class="line">      bin-&gt;fd = bin-&gt;bk = bin;<span class="comment">//利用伪chunk对bins数组进行初始化</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> MORECORE_CONTIGUOUS</span></span><br><span class="line">  <span class="keyword">if</span> (av != &amp;main_arena)</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">  set_noncontiguous (av);</span><br><span class="line">  <span class="keyword">if</span> (av == &amp;main_arena)</span><br><span class="line">    set_max_fast (DEFAULT_MXFAST);</span><br><span class="line">  av-&gt;flags |= FASTCHUNKS_BIT;</span><br><span class="line"></span><br><span class="line">  av-&gt;top = initial_top (av);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>当small bin为空的时候，bins的内容<br><img src="/2018/06/23/Glibc-堆管理学习笔记/smallbin1.png"><br>从<code>main_arena+104</code>的位置开始，就是bins数组的内容，每两个数组元素为一个bin。可以看出每一个bin的内容都为其本身的地址减去16，也就是减去了fd的偏移。</p>
 <h3 id="Large-bin"><a href="#Large-bin" class="headerlink" title="Large bin"></a>Large bin</h3><p>large bin保存的是从1024字节开始的大块chunk，也是双链表结构，共有63个bin。<br>但是和前面相比不同的是，每一个bin保存的chunk大小不一致。</p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>上面说道，当free一个128字节以上的chunk时，首先会将chunk放入unsorted bin当中，那么，何时才会将free的chunk放入对应的bin当中呢？<br>当下一次申请内存时，unsorted bin当中的chunk不能满足要求时，会将unsorted bin当中的free chunk放入对应的bin，这是glibc当中唯一的一处将free chunk放入small bin和large bin当中代码。<br>small bin保存的free chunk范围包括了fast bin的范围，这么做没有矛盾吗？<br>fast bin的提出是为了更快的分配内存，但是也会带来内存碎片率增高的负面影响，当一个应用对内存碎片率要求较高时，可以通过关闭fast bin来实现，这时，small bin就代替fast bin来管理较小的内存块。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>上面说道，当free一个128字节以上的chunk时，首先会将chunk放入unsorted bin当中，那么，何时才会将free的chunk放入对应的bin当中呢？<br><strong>当下一次申请内存时，unsorted bin当中的chunk不能满足要求时，会将unsorted bin当中的free chunk放入对应的bin，这是glibc当中唯一的一处将free chunk放入small bin和large bin当中代码。</strong><br>small bin保存的free chunk范围包括了fast bin的范围，这么做没有矛盾吗？<br><strong>fast bin的提出是为了更快的分配内存，但是也会带来内存碎片率增高的负面影响，当一个应用对内存碎片率要求较高时，可以通过关闭fast bin来实现，这时，small bin就代替fast bin来管理较小的内存块。</strong></p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://sploitfun.wordpress.com/2015/02/10/understanding-glibc-malloc/comment-page-1/" target="_blank" rel="noopener">Understanding glibc malloc</a><br><a href="https://www.cnblogs.com/alisecurity/p/5486458.html" target="_blank" rel="noopener">Linux堆内存管理深入分析(上)</a><br><a href="https://www.cnblogs.com/alisecurity/p/5520847.html" target="_blank" rel="noopener">Linux堆内存管理深入分析(下)</a></p>
 
       
