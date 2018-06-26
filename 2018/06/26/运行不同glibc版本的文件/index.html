@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="在实际运行程序时，经常会遇到一个问题，电脑上安装的glibc版本不符合要求，由于glibc是最底层的库，不可能重新编译glibc，这样会导致系统崩溃。所以，怎么解决这个问题就很有必要了。 已知程序的源码这时，便可以通过指定动态链接库文件，重新编译文件来解决。例如：gcc test.c -o test -Wl,--rpath=/path/to/newglibc,--dynamic-linker=/p">
+  <meta name="description" content="在实际运行程序时，经常会遇到一个问题，电脑上安装的glibc版本不符合要求，由于glibc是最底层的库，不可能重新编译glibc，这样会导致系统崩溃。所以，怎么解决这个问题就很有必要了。">
 <meta name="keywords" content="misc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="运行不同glibc版本的文件">
 <meta property="og:url" content="http://cqlin1995.github.io/2018/06/26/运行不同glibc版本的文件/index.html">
 <meta property="og:site_name" content="Pur3uit">
-<meta property="og:description" content="在实际运行程序时，经常会遇到一个问题，电脑上安装的glibc版本不符合要求，由于glibc是最底层的库，不可能重新编译glibc，这样会导致系统崩溃。所以，怎么解决这个问题就很有必要了。 已知程序的源码这时，便可以通过指定动态链接库文件，重新编译文件来解决。例如：gcc test.c -o test -Wl,--rpath=/path/to/newglibc,--dynamic-linker=/p">
+<meta property="og:description" content="在实际运行程序时，经常会遇到一个问题，电脑上安装的glibc版本不符合要求，由于glibc是最底层的库，不可能重新编译glibc，这样会导致系统崩溃。所以，怎么解决这个问题就很有必要了。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-26T07:43:37.795Z">
+<meta property="og:updated_time" content="2018-06-26T07:46:40.412Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="运行不同glibc版本的文件">
-<meta name="twitter:description" content="在实际运行程序时，经常会遇到一个问题，电脑上安装的glibc版本不符合要求，由于glibc是最底层的库，不可能重新编译glibc，这样会导致系统崩溃。所以，怎么解决这个问题就很有必要了。 已知程序的源码这时，便可以通过指定动态链接库文件，重新编译文件来解决。例如：gcc test.c -o test -Wl,--rpath=/path/to/newglibc,--dynamic-linker=/p">
+<meta name="twitter:description" content="在实际运行程序时，经常会遇到一个问题，电脑上安装的glibc版本不符合要求，由于glibc是最底层的库，不可能重新编译glibc，这样会导致系统崩溃。所以，怎么解决这个问题就很有必要了。">
 
 
 
@@ -382,7 +382,7 @@
       
 
       
-        <p>在实际运行程序时，经常会遇到一个问题，电脑上安装的glibc版本不符合要求，由于glibc是最底层的库，不可能重新编译glibc，这样会导致系统崩溃。<br>所以，怎么解决这个问题就很有必要了。</p>
+        <p>在实际运行程序时，经常会遇到一个问题，电脑上安装的glibc版本不符合要求，由于glibc是最底层的库，不可能重新编译glibc，这样会导致系统崩溃。<br>所以，怎么解决这个问题就很有必要了。<br><a id="more"></a></p>
 <h3 id="已知程序的源码"><a href="#已知程序的源码" class="headerlink" title="已知程序的源码"></a>已知程序的源码</h3><p>这时，便可以通过指定动态链接库文件，重新编译文件来解决。<br>例如：<code>gcc test.c -o test -Wl,--rpath=/path/to/newglibc,--dynamic-linker=/path/to/newglibc/ld-linux.so.2</code></p>
 <h3 id="没有源码"><a href="#没有源码" class="headerlink" title="没有源码"></a>没有源码</h3><p>可以使用patchelf这个工具，修改程序的动态链接库位置<br>例如：<code>patchelf --set-interpreter /path/to/newglibc/ld-linux.so.2 --set-rpath /path/to/newglibc/ test</code><br>比如我对silent文件执行了上述操作，查看其动态链接库文件的位置，发现已经指向了自己定义的位置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pur3uit@pur3uit:~/ctf$ ldd silent </span><br><span class="line">	linux-vdso.so.1 (0x00007ffeb060f000)</span><br><span class="line">	libc.so.6 =&gt; /home/pur3uit/build/build-2.25/libc.so.6 (0x00007fb0dd9cc000)</span><br><span class="line">	/home/pur3uit/build/build-2.25/lib/ld-linux-x86-64.so.2 =&gt; /lib64/ld-linux-x86-64.so.2 (0x00007fb0ddd69000)</span><br></pre></td></tr></table></figure></p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://herowong.me/archives/install-and-running-multiple-version-glibc-in-a-single-host-1.html" target="_blank" rel="noopener">在一个系统中安装运行多个版本的Glibc-原理篇</a></p>
