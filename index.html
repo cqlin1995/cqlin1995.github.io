@@ -294,6 +294,302 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cqlin1995.github.io/2018/06/26/运行不同glibc版本的文件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pur3uit">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pur3uit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/26/运行不同glibc版本的文件/" itemprop="url">运行不同glibc版本的文件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-26T15:01:22+08:00">2018-06-26</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/notes/" itemprop="url" rel="index"><span itemprop="name">notes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在实际运行程序时，经常会遇到一个问题，电脑上安装的glibc版本不符合要求，由于glibc是最底层的库，不可能重新编译glibc，这样会导致系统崩溃。<br>所以，怎么解决这个问题就很有必要了。</p>
+<h3 id="已知程序的源码"><a href="#已知程序的源码" class="headerlink" title="已知程序的源码"></a>已知程序的源码</h3><p>这时，便可以通过指定动态链接库文件，重新编译文件来解决。<br>例如：<code>gcc test.c -o test -Wl,--rpath=/path/to/newglibc,--dynamic-linker=/path/to/newglibc/ld-linux.so.2</code></p>
+<h3 id="没有源码"><a href="#没有源码" class="headerlink" title="没有源码"></a>没有源码</h3><p>可以使用patchelf这个工具，修改程序的动态链接库位置<br>例如：<code>patchelf --set-interpreter /path/to/newglibc/ld-linux.so.2 --set-rpath /path/to/newglibc/ test</code><br>比如我对silent文件执行了上述操作，查看其动态链接库文件的位置，发现已经指向了自己定义的位置。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pur3uit@pur3uit:~/ctf$ ldd silent </span><br><span class="line">	linux-vdso.so.1 (0x00007ffeb060f000)</span><br><span class="line">	libc.so.6 =&gt; /home/pur3uit/build/build-2.25/libc.so.6 (0x00007fb0dd9cc000)</span><br><span class="line">	/home/pur3uit/build/build-2.25/lib/ld-linux-x86-64.so.2 =&gt; /lib64/ld-linux-x86-64.so.2 (0x00007fb0ddd69000)</span><br></pre></td></tr></table></figure></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://herowong.me/archives/install-and-running-multiple-version-glibc-in-a-single-host-1.html" target="_blank" rel="noopener">在一个系统中安装运行多个版本的Glibc-原理篇</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cqlin1995.github.io/2018/06/26/afl-qemu安装错误/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pur3uit">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Pur3uit">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/26/afl-qemu安装错误/" itemprop="url">afl-qemu安装错误</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-26T14:59:01+08:00">2018-06-26</time>
+            
+
+            
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/notes/" itemprop="url" rel="index"><span itemprop="name">notes</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>afl是一款非常强大的fuzz工具，关于它的介绍和使用，网上有很多文章。<br>这里记录一下我在安装afl之后，使用qemu模式时遇到的一点问题，afl-qemu可以在没有源码的情况下对程序进行fuzz。</p>
+<h3 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h3><blockquote>
+<p>kail linux light 2018.2 amd64</p>
+</blockquote>
+<p>安装过程以及简单的操作可以参考下面的链接。</p>
+<h3 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h3><p>在kali平台上，默认的pkg-config路径为空，导致即使安装了glib2.0，也会显示找不到glib2.0的错误</p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>找到glib-2.0.pc文件所在的文件夹，我这里是/usr/lib/x86_64-linux-gnu/pkgconfig，将文件夹添加进PKG_CONFIG_PATH环境变量当中。<br><code>export $PKG_CONFIG_PATH=/usr/lib/x86_64-linux-gnu/pkgconfig</code><br>再次build就可以成功。<br>由于build_qemu_support.sh文件中进行了Instrumentation tests校验，所以最好安装afl默认的qemu版本，2.10，不要自己修改。</p>
+<h3 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h3><p>在build过程中，出现memfd.c文件的相关错误。</p>
+<h3 id="解决方法-1"><a href="#解决方法-1" class="headerlink" title="解决方法"></a>解决方法</h3><p><a href="https://git.qemu.org/?p=qemu.git;a=commitdiff;h=75e5b70e6b5dcc4f2219992" target="_blank" rel="noopener">查找patch文件记录</a></p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="http://spencerwuwu-blog.logdown.com/posts/1366733-a-simple-guide-of-afl-fuzzer" target="_blank" rel="noopener">A Simple Tutorial of AFL-Fuzzer</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cqlin1995.github.io/2018/06/25/强网杯silent以及double-free/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -769,7 +1065,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -803,7 +1099,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1015,6 +1315,10 @@
 
   
   
+    
+      
+    
+      
     
       
     
