@@ -221,7 +221,7 @@
         
           
   
-  <li class="menu-item menu-item-tags menu-item-active">
+  <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
@@ -231,7 +231,7 @@
         
           
   
-  <li class="menu-item menu-item-categories">
+  <li class="menu-item menu-item-categories menu-item-active">
     <a href="/categories/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
 </li>
@@ -383,7 +383,9 @@
         
           <h3 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h3><p>这个题目同样是2018强网杯线上赛的pwn题—-note，题目可以在这里<a href="https://github.com/cqlin1995/cqlin1995.github.io/tree/master/2018/07/27/fastbin%E7%9A%84off-by-one%E5%88%A9%E7%94%A8%E6%8A%80%E5%B7%A7/note" target="_blank" rel="noopener">下载</a>。<br>这里涉及到两个知识点：</p>
 <blockquote>
-<p>1：malloc_consolidate对fastbin的合并。<br>2：在程序开启RELRO技术之后，不能对GOT表进行改写的情况下，利用覆盖__realloc_hook来实现控制流劫持。<br>
+<p>1：malloc_consolidate对fastbin的合并。<br>2：在程序开启RELRO技术之后，不能对GOT表进行改写的情况下，利用覆盖__realloc_hook来实现控制流劫持。</p>
+</blockquote>
+<h3 id="realloc函数的处理流程"><a href="#realloc函数的处理流程" class="headerlink" title="realloc函数的处理流程"></a>realloc函数的处理流程</h3><p>对于realloc函数，我以往的认识大概就是具有对指定地址堆块的重新分配功能。如果新申请的内存大小小于或者等于原先的内存，那么就会返回原先的堆块指针;如果新申请的内存堆块大小大于原先的内存，那么就会新开辟一块内存返回给调用者，并将原先内存的内容拷贝到新申请的内存空间中。<br>但是，对于realloc是以怎样的步骤来申请新的内存的却不是很清楚。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/27/fastbin的off-by-one利用技巧/#more" rel="contents">
