@@ -221,7 +221,7 @@
         
           
   
-  <li class="menu-item menu-item-tags">
+  <li class="menu-item menu-item-tags menu-item-active">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 </li>
@@ -381,13 +381,16 @@
 
       
         
-          
-            <h3 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h3><p>这个题目同样是2018强网杯线上赛的pwn题—-note，题目和利用代码可以在这里<a href="">下载</a>。<br>这里涉及到两个知识点：</p>
+          <h3 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h3><p>这个题目同样是2018强网杯线上赛的pwn题—-note，题目可以在这里<a href="https://github.com/cqlin1995/cqlin1995.github.io/tree/master/2018/07/27/fastbin%E7%9A%84off-by-one%E5%88%A9%E7%94%A8%E6%8A%80%E5%B7%A7/note" target="_blank" rel="noopener">下载</a>。<br>这里涉及到两个知识点：</p>
 <blockquote>
-<p>1：fastbin的chunk何时会被合并。<br>2：利用覆盖__realloc_hook来实现控制流劫持。</p>
-</blockquote>
-
-          
+<p>1：malloc_consolidate对fastbin的合并。<br>2：在程序开启RELRO技术之后，不能对GOT表进行改写的情况下，利用覆盖__realloc_hook来实现控制流劫持。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/07/27/fastbin的off-by-one利用技巧/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
